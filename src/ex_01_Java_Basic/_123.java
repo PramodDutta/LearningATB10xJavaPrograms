@@ -1,2 +1,4 @@
-package ex_01_Java_Basic;public class _123 {
+package ex_01_Java_Basic;
+
+public class _123 {
 }

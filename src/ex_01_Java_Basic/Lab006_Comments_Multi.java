@@ -1,8 +1,12 @@
 package ex_01_Java_Basic;
 
-public class Lab005_Comments {
+public class Lab006_Comments_Multi {
     public static void main(String[] args) {
-        // This is a Comment, It will be ignored by JVM/ Compiler
-        //System.out.println("Hi");
+        /**
+         * Author : Pramod Dutta
+         * Course :  ATB10x
+         *
+         */
+        System.out.println("Multi Comment");
     }
 }
