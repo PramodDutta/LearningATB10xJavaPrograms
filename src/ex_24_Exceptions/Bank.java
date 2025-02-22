@@ -30,7 +30,7 @@ public class Bank {
             return bankName.amount + this.amount;
         } else {
             try {
-                throw new Exception("Currency Mismatch, Can't Proceed!");
+                throw new CustomException("Currency Mismatch, Can't Proceed!");
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
@@ -39,4 +39,10 @@ public class Bank {
     }
 
 
+}
+
+class CustomException extends Exception{
+    CustomException(String msg){
+        super(msg);
+    }
 }
