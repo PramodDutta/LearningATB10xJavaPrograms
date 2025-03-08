@@ -1,0 +1,232 @@
+{
+	"info": {
+		"_postman_id": "7b8de182-6c1b-4599-8d70-8772f2ec6fb0",
+		"name": "E2E Scenario #1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "611814",
+		"_collection_link": "https://www.postman.com/galactic-moon-789755/workspace/atbx/collection/611814-7b8de182-6c1b-4599-8d70-8772f2ec6fb0?action=share&source=collection_link&creator=611814"
+	},
+	"item": [
+		{
+			"name": "E2E Step 1 - Create Booking (No Auth) -",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Verify the status Code 200\", function (){",
+							"\t\tpm.expect(pm.response.code).to.be.equal(200);",
+							"});",
+							"",
+							"",
+							"// write a testcase to verify the firstNAME == \"Jim\"",
+							"",
+							"pm.test(\"TC#2 - Verify that the Firstname == Jim\",function(){",
+							"        // get the response - json, fetch the firstname from the json",
+							"        // verify that firstname == \"jim\"",
+							"",
+							"        var responseJSON = pm.response.json()",
+							"        var booking = responseJSON[\"booking\"]",
+							"        var firstname = booking[\"firstname\"]",
+							"        pm.expect(firstname).to.be.equal(\"Jim\")",
+							"",
+							"})",
+							"",
+							"pm.test(\"TC#3 Verify that booking ID is not null\",function(){",
+							"",
+							"        var responseJSON = pm.response.json()",
+							"        var bookingId = responseJSON[\"bookingid\"]",
+							"        pm.environment.set(\"bookingId\",bookingId)",
+							"        pm.expect(bookingId).to.not.equal(null)",
+							"",
+							"",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 500ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);",
+							"});",
+							"",
+							"pm.test(\"Content-Type is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"",
+							"",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"console.log(\"Before Making the Request\")",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstname\" : \"Jim\",\n    \"lastname\" : \"{{$randomLastName}}\",\n    \"totalprice\" : {{$randomInt}},\n    \"depositpaid\" : {{$randomBoolean}},\n    \"bookingdates\" : {\n        \"checkin\" : \"5000-01-01\",\n        \"checkout\" : \"5001-01-01\"\n    },\n    \"additionalneeds\" : \"{{$randomBsBuzz}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/booking",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"booking"
+					]
+				},
+				"description": "Generated from cURL: curl -X POST  \n[https://restful-booker.herokuapp.com/booking](https://restful-booker.herokuapp.com/booking)  \n\\-H 'Content-Type: application/json'  \n\\-d '{  \n\"firstname\" : \"Jim\",  \n\"lastname\" : \"Brown\",  \n\"totalprice\" : 111,  \n\"depositpaid\" : true,  \n\"bookingdates\" : {  \n\"checkin\" : \"2018-01-01\",  \n\"checkout\" : \"2019-01-01\"  \n},  \n\"additionalneeds\" : \"Breakfast\"  \n}'"
+			},
+			"response": []
+		},
+		{
+			"name": "🔐 Full Update Booking by ID (Auth Req.) Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"// Test case to verify the Jim -> james - after PUT",
+							"",
+							"pm.test(\"TC#2 - Verify that the Firstname == James\",function(){",
+							"        // get the response - json, fetch the firstname from the json",
+							"        // verify that firstname == \"jim\"",
+							"",
+							"        var responseJSON = pm.response.json()",
+							"        var firstname = responseJSON[\"firstname\"]",
+							"        pm.expect(firstname).to.be.equal(\"James\")",
+							"",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{vault:authorization-password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{vault:authorization-password}}",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstname\" : \"James\",\n    \"lastname\" : \"Brown\",\n    \"totalprice\" : 111,\n    \"depositpaid\" : true,\n    \"bookingdates\" : {\n        \"checkin\" : \"2018-01-01\",\n        \"checkout\" : \"2019-01-01\"\n    },\n    \"additionalneeds\" : \"Breakfast\"\n}"
+				},
+				"url": {
+					"raw": "https://restful-booker.herokuapp.com/booking/{{bookingId}}",
+					"protocol": "https",
+					"host": [
+						"restful-booker",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"booking",
+						"{{bookingId}}"
+					]
+				},
+				"description": "Generated from cURL: curl -X PUT \\\n  https://restful-booker.herokuapp.com/booking/1 \\\n  -H 'Content-Type: application/json' \\\n  -H 'Accept: application/json' \\\n  -H 'Cookie: token=abc123' \\\n  -d '{\n    \"firstname\" : \"James\",\n    \"lastname\" : \"Brown\",\n    \"totalprice\" : 111,\n    \"depositpaid\" : true,\n    \"bookingdates\" : {\n        \"checkin\" : \"2018-01-01\",\n        \"checkout\" : \"2019-01-01\"\n    },\n    \"additionalneeds\" : \"Breakfast\"\n}'"
+			},
+			"response": []
+		},
+		{
+			"name": "GetBooking by Single ID (No Auth) Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"TC#2 - Verify that the Firstname == James\",function(){",
+							"        // get the response - json, fetch the firstname from the json",
+							"        // verify that firstname == \"jim\"",
+							"",
+							"        var responseJSON = pm.response.json()",
+							"        var firstname = responseJSON[\"firstname\"]",
+							"        pm.expect(firstname).to.be.equal(\"James\")",
+							"",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://restful-booker.herokuapp.com/booking/{{bookingId}}",
+					"protocol": "https",
+					"host": [
+						"restful-booker",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"booking",
+						"{{bookingId}}"
+					]
+				},
+				"description": "Generated from cURL: curl -i https://restful-booker.herokuapp.com/booking/1\n"
+			},
+			"response": []
+		}
+	]
+}

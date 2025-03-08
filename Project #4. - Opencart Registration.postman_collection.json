@@ -1,0 +1,153 @@
+{
+	"info": {
+		"_postman_id": "ff0d4b5b-cc03-4151-98c1-75d290daa976",
+		"name": "Project #4. - Opencart Registration",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "611814",
+		"_collection_link": "https://www.postman.com/galactic-moon-789755/workspace/atbx/collection/611814-ff0d4b5b-cc03-4151-98c1-75d290daa976?action=share&source=collection_link&creator=611814"
+	},
+	"item": [
+		{
+			"name": "Create Account API",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7"
+					},
+					{
+						"key": "accept-language",
+						"value": "en-US,en;q=0.9,fr;q=0.8"
+					},
+					{
+						"key": "cache-control",
+						"value": "max-age=0"
+					},
+					{
+						"key": "dnt",
+						"value": "1"
+					},
+					{
+						"key": "origin",
+						"value": "https://awesomeqa.com"
+					},
+					{
+						"key": "priority",
+						"value": "u=0, i"
+					},
+					{
+						"key": "referer",
+						"value": "https://awesomeqa.com/ui/index.php?route=account/register"
+					},
+					{
+						"key": "sec-ch-ua",
+						"value": "\"Not(A:Brand\";v=\"99\", \"Google Chrome\";v=\"133\", \"Chromium\";v=\"133\""
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": "?0"
+					},
+					{
+						"key": "sec-ch-ua-platform",
+						"value": "\"macOS\""
+					},
+					{
+						"key": "sec-fetch-dest",
+						"value": "document"
+					},
+					{
+						"key": "sec-fetch-mode",
+						"value": "navigate"
+					},
+					{
+						"key": "sec-fetch-site",
+						"value": "same-origin"
+					},
+					{
+						"key": "sec-fetch-user",
+						"value": "?1"
+					},
+					{
+						"key": "upgrade-insecure-requests",
+						"value": "1"
+					},
+					{
+						"key": "user-agent",
+						"value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "customer_group_id",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "firstname",
+							"value": "Gavin",
+							"type": "text"
+						},
+						{
+							"key": "lastname",
+							"value": "Stevenson",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "fetu@mailinator.com",
+							"type": "text"
+						},
+						{
+							"key": "telephone",
+							"value": "+1 (432) 618-9784",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "Pa$$0rd!",
+							"type": "text"
+						},
+						{
+							"key": "confirm",
+							"value": "Pa$$0rd!",
+							"type": "text"
+						},
+						{
+							"key": "newsletter",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "agree",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://awesomeqa.com/ui/index.php?route=account/register",
+					"protocol": "https",
+					"host": [
+						"awesomeqa",
+						"com"
+					],
+					"path": [
+						"ui",
+						"index.php"
+					],
+					"query": [
+						{
+							"key": "route",
+							"value": "account/register"
+						}
+					]
+				},
+				"description": "Generated from cURL: curl 'https://awesomeqa.com/ui/index.php?route=account/register' \\\n  -H 'accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7' \\\n  -H 'accept-language: en-US,en;q=0.9,fr;q=0.8' \\\n  -H 'cache-control: max-age=0' \\\n  -H 'content-type: multipart/form-data; boundary=----WebKitFormBoundarylB2gAKvnr7EBO8i3' \\\n  -b 'OCSESSID=fa2a97407ca179d5d820ba2826; language=en-gb; currency=USD' \\\n  -H 'dnt: 1' \\\n  -H 'origin: https://awesomeqa.com' \\\n  -H 'priority: u=0, i' \\\n  -H 'referer: https://awesomeqa.com/ui/index.php?route=account/register' \\\n  -H 'sec-ch-ua: \"Not(A:Brand\";v=\"99\", \"Google Chrome\";v=\"133\", \"Chromium\";v=\"133\"' \\\n  -H 'sec-ch-ua-mobile: ?0' \\\n  -H 'sec-ch-ua-platform: \"macOS\"' \\\n  -H 'sec-fetch-dest: document' \\\n  -H 'sec-fetch-mode: navigate' \\\n  -H 'sec-fetch-site: same-origin' \\\n  -H 'sec-fetch-user: ?1' \\\n  -H 'upgrade-insecure-requests: 1' \\\n  -H 'user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36' \\\n  --data-raw $'------WebKitFormBoundarylB2gAKvnr7EBO8i3\\r\\nContent-Disposition: form-data; name=\"customer_group_id\"\\r\\n\\r\\n1\\r\\n------WebKitFormBoundarylB2gAKvnr7EBO8i3\\r\\nContent-Disposition: form-data; name=\"firstname\"\\r\\n\\r\\nGavin\\r\\n------WebKitFormBoundarylB2gAKvnr7EBO8i3\\r\\nContent-Disposition: form-data; name=\"lastname\"\\r\\n\\r\\nStevenson\\r\\n------WebKitFormBoundarylB2gAKvnr7EBO8i3\\r\\nContent-Disposition: form-data; name=\"email\"\\r\\n\\r\\nfetu@mailinator.com\\r\\n------WebKitFormBoundarylB2gAKvnr7EBO8i3\\r\\nContent-Disposition: form-data; name=\"telephone\"\\r\\n\\r\\n+1 (432) 618-9784\\r\\n------WebKitFormBoundarylB2gAKvnr7EBO8i3\\r\\nContent-Disposition: form-data; name=\"password\"\\r\\n\\r\\nPa$$w0rd\\u0021\\r\\n------WebKitFormBoundarylB2gAKvnr7EBO8i3\\r\\nContent-Disposition: form-data; name=\"confirm\"\\r\\n\\r\\nPa$$w0rd\\u0021\\r\\n------WebKitFormBoundarylB2gAKvnr7EBO8i3\\r\\nContent-Disposition: form-data; name=\"newsletter\"\\r\\n\\r\\n0\\r\\n------WebKitFormBoundarylB2gAKvnr7EBO8i3\\r\\nContent-Disposition: form-data; name=\"agree\"\\r\\n\\r\\n1\\r\\n------WebKitFormBoundarylB2gAKvnr7EBO8i3--\\r\\n'"
+			},
+			"response": []
+		}
+	]
+}
